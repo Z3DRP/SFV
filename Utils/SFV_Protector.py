@@ -26,7 +26,7 @@ class SFV_Protector(SFV_Auth):
     
     @staticmethod
     def encrypt(plainTxt, pubKey):
-        plaintTxt += getSalt()
+        plainTxt += getSalt()
         return rsa.encrypt(plainTxt.encode(), pubKey) if pubKey != '' else None
 
     # def Decrypt(self, hashData, accountId):
@@ -62,7 +62,7 @@ class SFV_Protector(SFV_Auth):
 
         
     @staticmethod
-    def getKeys(self):
+    def getKeys():
         try:
             public, private = rsa.newkeys(512)
         except Exception as err:

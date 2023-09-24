@@ -4,21 +4,21 @@ from Utils.Authenticator import Authenticator as auth
 
 class User:
 
-    def __init__(self, usrId, usrname, emailAddress, isAdminUsr, pwd=None):
-        self.Uid = usrId
+    def __init__(self, usrId, usrname, emailAddress, isAdminUsr = False, pwd=None):
+        self.Uid = usrId if usrId is not None else generateId()
         self.Username = usrname
         self.Email = emailAddress
         self.IsAdmin = isAdminUsr
         self.Password = pwd
 
     def getUsername(self):
-        return self.username
+        return self.Username
 
     def isAdminProfile(self):
-        return self.isAdmin
+        return self.IsAdmin
 
     def getEmail(self):
-        return self.email
+        return self.Email
 
     def setPassword(self, pwdHash):
         self.Password = pwdHash
@@ -47,11 +47,11 @@ class User:
         hashedPwd = auth.getHash(plainTxtPwd)
         return cls(usrId=userId, usrname=usrname, emailAddress=email, pwd=hashedPwd)
     
-    def createUser(self, username, email, isAdmin):
-        self.Uid = generateId()
-        self.Username = username
-        self.Email = email
-        self.IsAdmin = isAdmin
+    # def createUser(self, username, email, isAdmin):
+    #     self.Uid = generateId()
+    #     self.Username = username
+    #     self.Email = email
+    #     self.IsAdmin = isAdmin
 
     @classmethod
     def setUserLogin(cls, username, password):
@@ -83,5 +83,4 @@ class User:
                 return userData
 
         except Exception as err:
-            raise Exception(err) from err
-
+            print(err)
