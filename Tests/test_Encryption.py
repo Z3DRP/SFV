@@ -6,8 +6,8 @@ from Utils.SFV_Protector import SFV_Protector as protector
 class TestEncryption(unittest.TestCase):
     def setup(self):
         # create user and plain text password
-        self.tito = User.createUser('titoBrown', 'titoman1@gmail.con', False)
-        self.tito.setPlainTxtPassword('z3d_D3v')
+        self.tito = User(usrname='titoBrown', emailAddress='titoman1@gmail.con', isAdminUsr=False)
+        self.tito.setPlaintTxtPassword('z3d_D3v')
         # setup data for encryption
         self.publicKey, self.privateKey = protector.getKeys()
         self.data = 'This represents a org attribute that will be encrypted and stored in db'
@@ -27,7 +27,7 @@ class TestEncryption(unittest.TestCase):
 
     def test_decryptOrgData(self):
         decryptedData = protector.encrypt(self.data, self.privateKey)
-        self.asserEqual(self.data, decryptedData, 'Decrypted data did not match orginal data')        
+        self.assertEqual(self.data, decryptedData, 'Decrypted data did not match orginal data')        
 
 
 if __name__ == '__main__':
