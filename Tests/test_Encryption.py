@@ -4,9 +4,12 @@ from Utils.Authenticator import Authenticator as auth
 from Utils.SFV_Protector import SFV_Protector as protector
 
 class TestEncryption(unittest.TestCase):
+    def __init__(self):
+        self.data = ""
+
     def setup(self):
         # create user and plain text password
-        self.tito = User(usrname='titoBrown', emailAddress='titoman1@gmail.con', isAdminUsr=False)
+        self.tito = User(usrId=None, usrname='titoBrown', emailAddress='titoman1@gmail.con', isAdminUsr=False)
         self.tito.setPlaintTxtPassword('z3d_D3v')
         # setup data for encryption
         self.publicKey, self.privateKey = protector.getKeys()

@@ -8,8 +8,8 @@ from Models.AdminGroup import AdminGroup as group
 class TestPermissions(unittest.TestCase):
 
     def setUp(self):
-        self.stdUsr = StdUsr.createUser('titoBrown', 'tbrowny2@gmail.com', isAdmin=False)
-        self.adminUsr = AdmUsr.createUser('zedDev', 'z3d3v1@gmail.com', isAdmin=True)
+        self.stdUsr = StdUsr(id = None,username='titoBrown', email='tbrowny2@gmail.com', isAdmin=False)
+        self.adminUsr = AdmUsr.createUser('zedDev', 'z3d3v1@gmail.com', isAdmin=True) # AdmUser does not have a createUser method. Use the User class instead here.
         self.account = Account.createNewAccount('Alpha1Omega', self.adminUsr, 'Boberto Holmes')
         usrs = [self.stdUsr]
         self.group = group.createNewGroup('Admin1', usrs, self.account)
